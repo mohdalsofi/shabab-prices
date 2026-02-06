@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>محامص الشعب - نظام الأسعار</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* تنسيق رأس الصفحة الجديد */
+        .header-section { text-align: center; margin-bottom: 30px; }
+        .brand-name { font-size: 32px; font-weight: bold; color: #795548; margin: 0; }
+        .slogan { font-size: 20px; color: #d32f2f; margin-top: 5px; font-weight: 500; }
+        
+        .search-box { width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 18px; box-sizing: border-box; outline: none; transition: 0.3s; text-align: right; }
+        .search-box:focus { border-color: #795548; box-shadow: 0 0 8px rgba(121, 85, 72, 0.2); }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { background-color: #795548; color: white; padding: 12px; text-align: right; }
+        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 16px; }
+        tr:hover { background-color: #fff8f1; }
+        
+        .price-tag { font-weight: bold; color: #2e7d32; }
+        .weight-tag { color: #666; font-size: 0.9em; }
+        .hidden { display: none; }
+        .no-result { text-align: center; padding: 20px; color: #999; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-section">
+        <h1 class="brand-name">محامص الشعب</h1>
+        <div class="slogan"> من الشعب للشعب </div>
+    </div>
+    
+    <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن صنف... (مثلاً: أرز، من وسلوى)" onkeyup="searchFunction()">
+    
+    <table id="itemsTable">
+        <thead>
+            <tr>
+                <th>اسم الصنف</th>
+                <th>الوزن</th>
+                <th>السعر</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+<tr><td>المن و السلوى اللؤلؤة الشامية</td><td class='weight-tag'>400غرام</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>المن و السلوى اهلنا الطيبين</td><td class='weight-tag'>400 غرام</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>أرز الأمل 10 كيلو</td><td class='weight-tag'>1كغ</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>أرز الأمل 5 كيلو</td><td class='weight-tag'>1كغ</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>أرز الشعب  10 كيلو</td><td class='weight-tag'>10 كيلو</td><td class='price-tag'>8.5 دينار</td></tr>
+<tr><td>أرز الشعب 4 كيلو</td><td class='weight-tag'>4 كيلو</td><td class='price-tag'>3.75 دينار</td></tr>
+<tr><td>آيسكريم الهبة أناناس</td><td class='weight-tag'>فواكة</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>آيسكريم الهبة خوخ</td><td class='weight-tag'>فواكة</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>آيسكريم الهبة فراولة</td><td class='weight-tag'>فواكة</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>آيسكريم الهبة ليمون</td><td class='weight-tag'>فواكة</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>آيسكريم الهبة مانجا</td><td class='weight-tag'>فواكة</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>آيسكريم ميني مكس</td><td class='weight-tag'>175 غم</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>بابريكا</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>بابونج</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بزر ابيض حلو</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>بزر ابيض مالح</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>بزر ابيض مدخن</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>بزر ابيض مكسيكي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>بزر اسود بلدي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>بزر افغاني محمص </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>بزر افغاني محمص مدخن</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>بزر الضفة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>بزر ايراني محمص </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>بزر ايراني مدخن </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>بزر شمام مالح</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>بزر شمام مدخن</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>بزر عين شمس محمص </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>بزر عين شمس مدخن</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>بزر مصري محمص </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>بزر مصري مدخن </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>بسكوت ديما كريمي</td><td class='weight-tag'>16 باكيت</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>بسكوت شاي بيت بيور</td><td class='weight-tag'>400 غرام</td><td class='price-tag'>0.75 دينار</td></tr>
+<tr><td>بسكوت كليجا بالهيل</td><td class='weight-tag'>12 حبة</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>بسكوت كليجا نخالة</td><td class='weight-tag'>12 حبة</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>بسكوت نايس</td><td class='weight-tag'>12 باكيت</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>بصل ناعم</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.75 دينار</td></tr>
+<tr><td>بهارات اوزي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات بخاري</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات برياني</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات بطاطا</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات دجاج</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات سمك</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات شاورما</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات كبسة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات كبسة مطحونة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات كيجين</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>بهارات لحمة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات مشكلة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات مقلوبة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات مندي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>بهارات منسف</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>تسالي ماليزية حارة</td><td class='weight-tag'>500 غرام</td><td class='price-tag'>1.25 دينار</td></tr>
+<tr><td>تسالي ماليزية حلوة</td><td class='weight-tag'>500 غرام</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>تمر رطب ملكي  باكيت</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>تمر عجوة المدينة</td><td class='weight-tag'>1كغ</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>تمر عجوة المدينة باكيت </td><td class='weight-tag'>400غرام</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>تمر مجهول SF</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>تمر مجهول جامبو </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>تمر مجهول سوبر جامبو </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6 دينار</td></tr>
+<tr><td>تمر مجهول فانسي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>تمر مطحون</td><td class='weight-tag'>800 غرام</td><td class='price-tag'>0.9 دينار</td></tr>
+<tr><td>توت بري</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>توفي انجليزي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>توفي عماني</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>ثوم مطحون</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.75 دينار</td></tr>
+<tr><td>جرانولا </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>11.5 دينار</td></tr>
+<tr><td>جنا رطب سكري علب </td><td class='weight-tag'>1.50كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>جوز بيكان </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>12 دينار</td></tr>
+<tr><td>جوز قلب عين الجمل حبة كاملة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>جوز قلب عين الجمل كسر</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>جوز قلب عين الجمل كومبو</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.75 دينار</td></tr>
+<tr><td>جوز قلب عين الجمل نخب اول</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>جوز هند</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>جيلي علب </td><td class='weight-tag'>1.200 كيلو </td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>حلبة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>1.75 دينار</td></tr>
+<tr><td>حلوى نابليون</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>دقة حمراء</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>ذرة بوشار</td><td class='weight-tag'>1كيلو</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>ذرة محمصة </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>راحة روسي </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>زبيب اسود</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>زبيب اشقر </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>زبيب اشقر جامبو</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>زعتر الضفة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5 دينار</td></tr>
+<tr><td>زعتر بلدي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>زعتر ملوكي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>زنجبيل مطحون</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>زهورات</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>زيت زيتون الشعب </td><td class='weight-tag'>500 مل</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>زيت زيتون الشعب  </td><td class='weight-tag'>8 كيلو</td><td class='price-tag'>55 دينار</td></tr>
+<tr><td>سماق تركي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>سمسم محمص</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.75 دينار</td></tr>
+<tr><td>سوفت جيلي 50غم</td><td class='weight-tag'>50 غرام</td><td class='price-tag'>0.5 دينار</td></tr>
+<tr><td>شوكولاتة الشعب الفاخرة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>شوكولاتة الشعب بالحليب الواح</td><td class='weight-tag'>100 غرام</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>شوكولاتة ايطالي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>شوكولاتة تونسي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>شوكولاتة دبي</td><td class='weight-tag'>190 غرام</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>شوكولاتة دراجية بندق</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>شوكولاتة دراجية لوز</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>شوكولاتة روسي </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>شوكولاتة روسي ( كونفيستا)</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>صنوبر باكستاني</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>30 دينار</td></tr>
+<tr><td>صنوبر تركي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>27.5 دينار</td></tr>
+<tr><td>عصير الجوهر</td><td class='weight-tag'>720غم</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>عصير مايوكا</td><td class='weight-tag'>1 لتر</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>علكة شعراوي</td><td class='weight-tag'>150 غرام</td><td class='price-tag'>0.5 دينار</td></tr>
+<tr><td>فستق برازيلي محمص</td><td class='weight-tag'>1ك</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>فستق برازيلي نكهات</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>فستق حلبي احمدي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>16 دينار</td></tr>
+<tr><td>فستق حلبي بوز</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>22 دينار</td></tr>
+<tr><td>فستق حلبي جامبو محمص حلو</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>11.5 دينار</td></tr>
+<tr><td>فستق حلبي جامبو محمص مالح</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>11.5 دينار</td></tr>
+<tr><td>فستق حلبي جامبو محمص مدخن</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>11.5 دينار</td></tr>
+<tr><td>فستق سوداني حلو</td><td class='weight-tag'>1 كيلو </td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>فستق سوداني مالح</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>فستق سوداني محمص وسط</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>فستق سوداني مدخن</td><td class='weight-tag'>1 كيلو </td><td class='price-tag'>2.25 دينار</td></tr>
+<tr><td>فستق سوداني ني</td><td class='weight-tag'>1كغ</td><td class='price-tag'>1.75 دينار</td></tr>
+<tr><td>فستق مياسي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>فلفل اسود حب</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>فلفل اسود مطحون</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>قراصيا</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>قرفة مطحونة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>قزحة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>قضامة اسطنبولي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>قضامة صفراء</td><td class='weight-tag'>1كغ</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>قهوة اكسترا</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>قهوة امريكية </td><td class='weight-tag'>420 غرام</td><td class='price-tag'>7 دينار</td></tr>
+<tr><td>قهوة بريميوم</td><td class='weight-tag'>1كغ</td><td class='price-tag'>12 دينار</td></tr>
+<tr><td>قهوة بريميوم </td><td class='weight-tag'>250 غرام</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>قهوة بريميوم </td><td class='weight-tag'>100 غرام</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>قهوة خصوصي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>8.5 دينار</td></tr>
+<tr><td>قهوة سعودية </td><td class='weight-tag'>250 غرام</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>قهوة سعودية </td><td class='weight-tag'>50 غرام</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>قهوة عربية </td><td class='weight-tag'>40 غرام</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>قهوة عربية </td><td class='weight-tag'>250 غرام</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>قهوة فرنسية </td><td class='weight-tag'>250 غرام</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>قهوة فرنسية </td><td class='weight-tag'>100 غرام</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>قهوة فلسطينية </td><td class='weight-tag'>500 غرام</td><td class='price-tag'>6 دينار</td></tr>
+<tr><td>قهوة فلسطينية </td><td class='weight-tag'>250 غرام</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>قهوة قطرية </td><td class='weight-tag'>250 غرام</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>قهوة ملوكي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>10.5 دينار</td></tr>
+<tr><td>كابتشينو جود داي علب</td><td class='weight-tag'>5 باكيت</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>كاجو انصاف </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>كاجو انصاف محمص</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6 دينار</td></tr>
+<tr><td>كاجو سوبر جامبو </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>كاجو سوبر جامبو نكهات</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>كاجو مياسي نكهات</td><td class='weight-tag'>1 كيلو </td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>كاري</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>كاندي </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>كاندي صوص</td><td class='weight-tag'> 350 غم</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>كاندي لا بوبو</td><td class='weight-tag'>500 غرام</td><td class='price-tag'>2.25 دينار</td></tr>
+<tr><td>كاندي مقرمش</td><td class='weight-tag'>40 غرام</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>كراوية حب</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>كراوية مطحونة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>كركديه</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>1.75 دينار</td></tr>
+<tr><td>كركم</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>كزبرة حب</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>كزبرة مطحونة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>كمون حب</td><td class='weight-tag'>1كيلو</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>كمون مطحون</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>كوكيز كروفكا</td><td class='weight-tag'>بنكهة البندق ( 136غرام )</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>كوكيز كروفكا</td><td class='weight-tag'>بنكهة البرتقال ( 152 غرام )</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>كيك تورتينا</td><td class='weight-tag'>8 حبات ( فانيلا )</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>كيك تورتينا</td><td class='weight-tag'>8 حبات ( مشمش )</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>كيك تورتينا</td><td class='weight-tag'>8 حبات ( شوكولاتة )</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>كيك تورتينا</td><td class='weight-tag'>8 حبات ( فراولة )</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>لوز  ارباع مقشر</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>لوز  انصاف مقشر</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>لوز حبة كاملة مقشر</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7 دينار</td></tr>
+<tr><td>لوز حبة كاملة نخب اول</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>لوز حبة كاملة نخب ثاني</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>لوز محمص حلو</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>لوز محمص مالح</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>لوز محمص مدخن</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>لومي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>مخلوطة اكسترا </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>8.5 دينار</td></tr>
+<tr><td>مخلوطة الشعب</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>مخلوطة برازيلي</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7 دينار</td></tr>
+<tr><td>مخلوطة سوبر </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>مخلوطة سوبر اكسترا </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>9.5 دينار</td></tr>
+<tr><td>مخلوطة سوبر الشعب مدخن </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>مخلوطة سوبر الشعب </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>مخلوطة سوبر مدخن</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5 دينار</td></tr>
+<tr><td>مخلوطة سوبر ملوكي </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>12.5 دينار</td></tr>
+<tr><td>مخلوطة مكس </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>مخلوطة ملوكي </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>11.5 دينار</td></tr>
+<tr><td>مشمش مجفف</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>6.5 دينار</td></tr>
+<tr><td>معمول الشعب بالسميد</td><td class='weight-tag'>20 حبة </td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>معمول الشعب بالهيل</td><td class='weight-tag'>20 حبة</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>معمول جوهرة مكة </td><td class='weight-tag'>20 حبة</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>مكاديميا مدخنة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>15 دينار</td></tr>
+<tr><td>مكاديميا مقشرة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>15 دينار</td></tr>
+<tr><td>ملبس قضامة</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>3.5 دينار</td></tr>
+<tr><td>ملبس لوز </td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>5.5 دينار</td></tr>
+<tr><td>موالح الفارس</td><td class='weight-tag'>160 غرام</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>ميرامية</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>نسكافية الشعب بالبندق</td><td class='weight-tag'>24 ظرف</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>نسكافية الشعب بالكراميل</td><td class='weight-tag'>24 ظرف</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>نسكافية الشعب بجوز الهند</td><td class='weight-tag'>24 ظرف</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>نسكافيه الشعب - بدون سكر</td><td class='weight-tag'>24 ظرف</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>نسكافيه الشعب - شوكولاتة </td><td class='weight-tag'>24 ظرف</td><td class='price-tag'>4 دينار</td></tr>
+<tr><td>نسكافيه الشعب كلاسيك</td><td class='weight-tag'>24 ظرف</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>نشا</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>0.75 دينار</td></tr>
+<tr><td>نوجا الشعب</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>7.5 دينار</td></tr>
+<tr><td>هيل تربس</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>28 دينار</td></tr>
+<tr><td>هيل سوبر جامبو</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>36 دينار</td></tr>
+<tr><td>هيل مطحون</td><td class='weight-tag'>1كيلو</td><td class='price-tag'>24 دينار</td></tr>
+<tr><td>هيل مفتح</td><td class='weight-tag'>1كغ</td><td class='price-tag'>24 دينار</td></tr>
+<tr><td>ورق غار</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>ويفر اصابع جولدن</td><td class='weight-tag'>400 غرام</td><td class='price-tag'>3 دينار</td></tr>
+<tr><td>ويفر اصابع جولدن</td><td class='weight-tag'>110 غرام</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>ويفر اصابع جولدن </td><td class='weight-tag'>250 غرام</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>ويفر الشعب بالبندق</td><td class='weight-tag'>250 غرام</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>ويفر الشعب بالشوكولاته</td><td class='weight-tag'>250 غرام</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>ويفر غراندى اموري</td><td class='weight-tag'>240 غرام ( 34 قطعة )</td><td class='price-tag'>2.5 دينار</td></tr>
+<tr><td>ويفر كروفكا</td><td class='weight-tag'>بنكهة التوت البري ( 140 غرام )</td><td class='price-tag'>1 دينار</td></tr>
+<tr><td>ويفر ماندو</td><td class='weight-tag'>بنكهة الفراولة ( 400 غرام )</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>ويفر ماندو </td><td class='weight-tag'>بنكهة الشوكولاتة ( 400 غرام )</td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>ويفر ماندو </td><td class='weight-tag'>بنكهة ليمون ( 400 غرام ) </td><td class='price-tag'>2 دينار</td></tr>
+<tr><td>ويفر يوناني </td><td class='weight-tag'>180 غرام</td><td class='price-tag'>1.5 دينار</td></tr>
+<tr><td>يانسون حب</td><td class='weight-tag'>1كغ</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>يانسون مطحون</td><td class='weight-tag'>1 كيلو</td><td class='price-tag'>4.5 دينار</td></tr>
+<tr><td>كرات التمر بالطحينية</td><td class='weight-tag'>500 جرام</td><td class='price-tag'>3 دينار</td></tr>
+        </tbody>
+    </table>
+    
+    <div id="noMessage" class="no-result hidden">عذراً، هذا الصنف غير موجود</div>
+</div>
+
+<script>
+    function searchFunction() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let tr = document.getElementById("tableBody").getElementsByTagName("tr");
+        let noMessage = document.getElementById("noMessage");
+        let visibleCount = 0;
+
+        for (let i = 0; i < tr.length; i++) {
+            let tdName = tr[i].getElementsByTagName("td")[0];
+            if (tdName) {
+                let textValue = tdName.textContent || tdName.innerText;
+                if (textValue.toLowerCase().indexOf(input) > -1) {
+                    tr[i].style.display = "";
+                    visibleCount++;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        
+        if (visibleCount > 0) {
+            noMessage.classList.add("hidden");
+        } else {
+            noMessage.classList.remove("hidden");
+        }
+    }
+</script>
+
+</body>
+</html>
